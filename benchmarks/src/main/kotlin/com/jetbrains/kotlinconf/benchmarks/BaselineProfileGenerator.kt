@@ -21,6 +21,10 @@ class BaselineProfileGenerator {
     ) {
         startActivityAndAllowNotifications()
 
+        // Handle Privacy Notice if it appears
+        val acceptButton = device.findObject(By.text("Accept"))
+        acceptButton?.click()
+
         // Wait for the schedule to be visible
         device.wait(Until.hasObject(By.desc("Schedule")), 10_000)
 
