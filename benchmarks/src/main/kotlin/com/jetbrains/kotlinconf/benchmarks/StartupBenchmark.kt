@@ -37,9 +37,11 @@ class StartupBenchmark {
     ) {
         startActivityAndAllowNotifications()
         
-        // Handle Privacy Notice if it appears
-        val acceptButton = device.findObject(By.text("Accept"))
-        acceptButton?.click()
+        // Handle Privacy Notice and Onboarding if they appear
+        device.findObject(By.text("Accept"))?.click()
+        device.waitForIdle()
+        device.findObject(By.text("Let’s get started!"))?.click()
+        device.waitForIdle()
 
         // Wait for the schedule to be visible to capture Time To Full Display (approx)
         device.wait(Until.hasObject(By.desc("Schedule")), 10_000)
